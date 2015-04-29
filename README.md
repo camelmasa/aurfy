@@ -37,7 +37,6 @@ client = Aurfy::Client.new(
 )
 
 client.request(
-  ordercurrency: ordercurrency,
   cardnumber: cardnumber,
   expirydate: expirydate,
   cv2: cv2,
