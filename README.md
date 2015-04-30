@@ -21,28 +21,14 @@ Usage
 -----
 
 ```rb
-merchantid = "M000000000"
-trade_certificate = "D0123456789012345678901234567789"
-cardnumber = "0123456789012345"
-expirydate = "1701"
-cv2 = "123"
-cardtype = "UP"
-orderamount = "100.00"
-clientip = "192.168.0.1"
-
-client = Aurfy::Client.new(
-  test: true,
-  merchantid: merchantid,
-  trade_certificate: trade_certificate
-)
+client = Aurfy::Client.new("M000000000", "D0123456789012345678901234567890")
 
 client.request(
-  cardnumber: cardnumber,
-  expirydate: expirydate,
-  cv2: cv2,
-  cardtype: cardtype,
-  orderamount: orderamount,
-  clientip: clientip
+  cardnumber:  "0123456789012345",
+  expirydate:  "1701",
+  cv2:         "123",
+  orderamount: "100.00",
+  clientip:    "192.168.0.1"
 )
 ```
 

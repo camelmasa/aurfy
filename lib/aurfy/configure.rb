@@ -7,6 +7,7 @@ module Aurfy
     end
 
     def initialize
+      @cardtype         = "UP"
       @charset          = "UTF-8"
       @ordertime        = DateTime.now.strftime("%Y%m%d%H%M%S")
       @orderid          = DateTime.now.strftime("%Y%m%d%H%M%S%N")

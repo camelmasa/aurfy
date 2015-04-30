@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aurfy::Client do
-  subject { described_class.new }
+  subject { described_class.new("merchant_id", "trade_certificate") }
 
   describe "#request" do
     context "with valid credit card" do

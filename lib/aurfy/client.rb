@@ -5,9 +5,8 @@ module Aurfy
   attr_reader :api_url
 
   class Client
-    def initialize(options = {})
-      @api_url = (options.delete :test) ? TEST_API_URL : API_URL
-      configure.options = options
+    def initialize(merchantid, trade_certificate, test = false)
+      @api_url = test ? API_URL : TEST_API_URL
     end
 
     def request(options = {})
