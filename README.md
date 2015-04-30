@@ -1,5 +1,9 @@
 # aurfy
 
+[![Build Status](https://travis-ci.org/camelmasa/aurfy.png)](https://travis-ci.org/camelmasa/aurfy)
+[![Code Climate](https://codeclimate.com/github/camelmasa/aurfy/badges/gpa.svg)](https://codeclimate.com/github/camelmasa/aurfy)
+[![Test Coverage](https://codeclimate.com/github/camelmasa/aurfy/badges/coverage.svg)](https://codeclimate.com/github/camelmasa/aurfy)
+
 Ruby client for [Aurfy](http://www.aurfy.com/)
 
 Instration
