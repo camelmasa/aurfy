@@ -34,9 +34,8 @@ module Aurfy
     end
 
     def sorted_variables
-      instance_variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }.delete_if do
-        |k, _| k == :trade_certificate
-      end.sort.to_h
+      variables = instance_variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }
+      Hash[variables.delete_if { |k, _| k == :trade_certificate }.sort]
     end
 
     def signature_key
