@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'simplecov', require: false, group: :test
+group :test do
+  gem 'simplecov', require: false
+  gem "codeclimate-test-reporter", require: nil
+end
 
 gemspec
