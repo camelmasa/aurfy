@@ -1,7 +1,7 @@
 module Aurfy
   class Response
-    attr_reader :result, :merchantid, :orderamount, :ordercurrency, :orderid, :ordertime, :respcode, :respmsg, :signature, :signmethod,
-       :txnid, :txnremark1, :txnremark2, :txnstatus, :txntime
+    attr_reader :result, :merchantid, :orderamount, :ordercurrency, :orderid, :ordertime, :respcode, :respmsg,
+                :signature, :signmethod, :txnid, :txnremark1, :txnremark2, :txnstatus, :txntime
 
     def self.keys
       [:merchantid, :orderamount, :ordercurrency, :orderid, :ordertime, :respcode, :respmsg, :signature, :signmethod,

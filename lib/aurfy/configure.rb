@@ -9,10 +9,10 @@ module Aurfy
     def initialize
       @cardtype         = "UP"
       @charset          = "UTF-8"
-      @ordertime        = DateTime.now.strftime("%Y%m%d%H%M%S")
-      @orderid          = DateTime.now.strftime("%Y%m%d%H%M%S%N")
       @ordercurrency    = "USD"
       @orderdescription = ""
+      @orderid          = DateTime.now.strftime("%Y%m%d%H%M%S%N")
+      @ordertime        = DateTime.now.strftime("%Y%m%d%H%M%S")
       @signmethod       = "MD5"
       @transtype        = "PURCHASE"
       @txnremark1       = ""
