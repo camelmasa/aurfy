@@ -21,7 +21,10 @@ Usage
 -----
 
 ```rb
-client = Aurfy::Client.new("M000000000", "D0123456789012345678901234567890")
+merchant_id       = "M000000000"
+trade_certificate = "D0123456789012345678901234567890"
+
+client = Aurfy::Client.new(merchant_id, trade_certificate)
 
 client.request(
   cardnumber:  "0123456789012345",
