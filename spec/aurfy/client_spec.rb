@@ -3,6 +3,24 @@ require 'spec_helper'
 describe Aurfy::Client do
   subject { described_class.new("merchant_id", "trade_certificate") }
 
+  describe "#initialize" do
+    it "assigns parameters for payment" do
+      expect(subject.merchantid).to eq "merchant_id"
+      expect(subject.trade_certificate).to eq "trade_certificate"
+      expect(subject.api_url).to eq Aurfy::API_URL
+    end
+
+    context "with test argumaent" do
+      subject { described_class.new("merchant_id", "trade_certificate", true) }
+
+      it "assigns parameters for payment" do
+        expect(subject.merchantid).to eq "merchant_id"
+        expect(subject.trade_certificate).to eq "trade_certificate"
+        expect(subject.api_url).to eq Aurfy::TEST_API_URL
+      end
+    end
+  end
+
   describe "#request" do
     context "with valid credit card" do
       it "returns successful Aurfy::Response instance" do
