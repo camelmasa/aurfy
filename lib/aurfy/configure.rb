@@ -7,7 +7,6 @@ module Aurfy
     end
 
     def initialize
-      @cardtype         = "UP"
       @charset          = "UTF-8"
       @ordercurrency    = "USD"
       @orderdescription = ""
@@ -30,6 +29,7 @@ module Aurfy
         next unless Configure.keys.include? key
         instance_variable_set(:"@#{key}", value)
       end
+      @cardtype ||= cardtype
       options
     end
 
@@ -46,6 +46,24 @@ module Aurfy
 
     def signature
       Digest::MD5.hexdigest(signature_key)
+    end
+
+    def cardtype
+      credit_card = credit_card_detector.detect(@cardnumber)
+      case credit_card.brand
+      when :union_pay
+        "UP"
+      when :vise
+        "VISA"
+      when :jcb
+        "JCB"
+      when :master
+        "MC"
+      end
+    end
+
+    def credit_card_detector
+      CreditCardReader::Detector.new
     end
   end
 end

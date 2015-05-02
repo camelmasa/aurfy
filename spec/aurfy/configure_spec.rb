@@ -32,9 +32,9 @@ describe Aurfy::Configure do
 
   describe "#sorted_variables" do
     it "returns sorted instance variables" do
-      subject.options = { trade_certificate: "test", cardnumber: "0123456789012345", orderid: "orderid",
+      subject.options = { trade_certificate: "test", cardnumber: "6200123456789012", orderid: "orderid",
                           ordertime: "20150429124533" }
-      sorted_variables = { cardnumber: "0123456789012345", cardtype: "UP", charset: "UTF-8", ordercurrency: "USD",
+      sorted_variables = { cardnumber: "6200123456789012", cardtype: "UP", charset: "UTF-8", ordercurrency: "USD",
                            orderdescription: "", orderid: "orderid", ordertime: "20150429124533", signmethod: "MD5",
                            transtype: "PURCHASE", txnremark1: "", txnremark2: "", version: "1.0", website: "" }
 
@@ -44,9 +44,9 @@ describe Aurfy::Configure do
 
   describe "#signature_key" do
     it "returns sorted instance variables" do
-      subject.options = { signmethod: "MD5", trade_certificate: "trade_certificate", orderid: "orderid",
+      subject.options = { cardnumber: "6200123456789012", signmethod: "MD5", trade_certificate: "trade_certificate", orderid: "orderid",
                           ordertime: "20150429124533" }
-      signature_key = "cardtype=UP&charset=UTF-8&ordercurrency=USD&orderdescription=&orderid=orderid&ordertime=20150429124533&transtype=PURCHASE&txnremark1=&txnremark2=&version=1.0&website=&trade_certificate"
+      signature_key = "cardnumber=6200123456789012&cardtype=UP&charset=UTF-8&ordercurrency=USD&orderdescription=&orderid=orderid&ordertime=20150429124533&transtype=PURCHASE&txnremark1=&txnremark2=&version=1.0&website=&trade_certificate"
 
       expect(subject.signature_key).to eq(signature_key)
     end
