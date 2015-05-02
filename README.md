@@ -25,6 +25,8 @@ Usage
 -----
 
 ```rb
+require "aurfy"
+
 merchant_id       = "M000000000"
 trade_certificate = "D0123456789012345678901234567890"
 
