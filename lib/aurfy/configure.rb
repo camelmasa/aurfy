@@ -1,5 +1,7 @@
 module Aurfy
   class Configure
+    CREDIT_CARD_ORIGINAL_NAMES = { union_pay: "UP", vise: "VISA", jcb: "JCB", master: "MC" }
+
     def self.keys
       [:merchantid, :orderid, :ordertime, :ordercurrency, :orderamount, :orderdescription, :txnremark1, :txnremark2,
        :charset, :clientip, :version, :transtype, :website, :cardtype, :cardnumber, :cv2, :expirydate, :signmethod,
@@ -29,12 +31,16 @@ module Aurfy
         next unless Configure.keys.include? key
         instance_variable_set(:"@#{key}", value)
       end
-      @cardtype ||= cardtype
-      options
+      @cardtype = cardtype
+
+      variables
+    end
+
+    def variables
+      instance_variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }
     end
 
     def sorted_variables
-      variables = instance_variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }
       Hash[variables.delete_if { |k, _| k == :trade_certificate }.sort]
     end
 
@@ -49,17 +55,8 @@ module Aurfy
     end
 
     def cardtype
-      credit_card = credit_card_detector.detect(@cardnumber)
-      case credit_card.brand
-      when :union_pay
-        "UP"
-      when :vise
-        "VISA"
-      when :jcb
-        "JCB"
-      when :master
-        "MC"
-      end
+      card_information = credit_card_detector.detect(@cardnumber)
+      CREDIT_CARD_ORIGINAL_NAMES[card_information.brand]
     end
 
     def credit_card_detector
