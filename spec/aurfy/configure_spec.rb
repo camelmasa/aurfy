@@ -5,9 +5,9 @@ describe Aurfy::Configure do
 
   describe ".keys" do
     it "returns configure keys" do
-      keys =  [:merchantid, :orderid, :ordertime, :ordercurrency, :orderamount, :orderdescription, :txnremark1,
-               :txnremark2, :charset, :clientip, :version, :transtype, :website, :cardtype, :cardnumber, :cv2,
-               :expirydate, :signmethod, :trade_certificate]
+     keys = [:cardnumber, :cardtype, :charset, :cv2, :expirydate, :orderamount, :ordercurrency, :orderdescription, :orderid,
+             :ordertime, :merchantid, :signmethod, :trade_certificate, :transtype, :txnremark1, :txnremark2, :version,
+             :website]
 
       expect(described_class.keys).to eq keys
     end
@@ -22,33 +22,26 @@ describe Aurfy::Configure do
     end
   end
 
-  describe "#options=" do
-    it "assigns variable for option" do
-      expect do
-        subject.options = { merchantid: "merchantid" }
-      end.to change { subject.instance_variable_get(:"@merchantid") } .from(nil).to("merchantid")
-    end
-  end
-
   describe "#sorted_variables" do
     it "returns sorted instance variables" do
-      subject.options = { trade_certificate: "test", cardnumber: "6200123456789012", orderid: "orderid",
-                          ordertime: "20150429124533" }
+      configure = described_class.new(trade_certificate: "test", cardnumber: "6200123456789012", orderid: "orderid",
+                                       ordertime: "20150429124533")
       sorted_variables = { cardnumber: "6200123456789012", cardtype: "UP", charset: "UTF-8", ordercurrency: "USD",
                            orderdescription: "", orderid: "orderid", ordertime: "20150429124533", signmethod: "MD5",
                            transtype: "PURCHASE", txnremark1: "", txnremark2: "", version: "1.0", website: "" }
 
-      expect(subject.sorted_variables).to eq(sorted_variables)
+      expect(configure.sorted_variables).to eq(sorted_variables)
     end
   end
 
   describe "#signature_key" do
     it "returns sorted instance variables" do
-      subject.options = { cardnumber: "6200123456789012", signmethod: "MD5", trade_certificate: "trade_certificate", orderid: "orderid",
-                          ordertime: "20150429124533" }
+      configure = described_class.new(cardnumber: "6200123456789012", signmethod: "MD5",
+                                      trade_certificate: "trade_certificate", orderid: "orderid",
+                                      ordertime: "20150429124533")
       signature_key = "cardnumber=6200123456789012&cardtype=UP&charset=UTF-8&ordercurrency=USD&orderdescription=&orderid=orderid&ordertime=20150429124533&transtype=PURCHASE&txnremark1=&txnremark2=&version=1.0&website=&trade_certificate"
 
-      expect(subject.signature_key).to eq(signature_key)
+      expect(configure.signature_key).to eq(signature_key)
     end
   end
 end

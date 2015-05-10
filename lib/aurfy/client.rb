@@ -12,14 +12,10 @@ module Aurfy
     end
 
     def request(options = {})
-      configure.options = options.merge(merchantid: merchantid, trade_certificate: trade_certificate)
+      @configure = Configure.new(options.merge(merchantid: merchantid, trade_certificate: trade_certificate))
 
-      result = Faraday.post @api_url, configure.params
+      result = Faraday.post @api_url, @configure.params
       Response.new(result)
-    end
-
-    def configure
-      @configure ||= Configure.new
     end
   end
 end
