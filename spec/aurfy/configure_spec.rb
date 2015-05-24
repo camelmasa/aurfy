@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aurfy::Configure do
-  subject { described_class.new }
+  let(:configure) { described_class.new }
 
   describe ".keys" do
     it "returns configure keys" do
@@ -15,10 +15,10 @@ describe Aurfy::Configure do
 
   describe "#params" do
     it "returns configure params" do
-      allow(subject).to receive(:sorted_variables) { {} }
-      allow(subject).to receive(:signature) { "signature" }
+      allow(configure).to receive(:sorted_variables) { {} }
+      allow(configure).to receive(:signature) { "signature" }
 
-      expect(subject.params).to eq({ signature: "signature" })
+      expect(configure.params).to eq({ signature: "signature" })
     end
   end
 
