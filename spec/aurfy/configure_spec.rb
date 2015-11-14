@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Aurfy::Configure do
   let(:configure) { described_class.new }
 
+  it "returns CREDIT_CARD_ORIGINAL_NAMES hash" do
+    hash = { union_pay: "UP", visa: "VISA", jcb: "JCB", master: "MC" }
+    expect(described_class::CREDIT_CARD_ORIGINAL_NAMES).to eq hash
+  end
+
   describe ".keys" do
     it "returns configure keys" do
      keys = [:cardnumber, :cardtype, :charset, :cv2, :expirydate, :orderamount, :ordercurrency, :orderdescription, :orderid,

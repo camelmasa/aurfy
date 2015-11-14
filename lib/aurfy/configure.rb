@@ -1,6 +1,6 @@
 module Aurfy
   class Configure
-    CREDIT_CARD_ORIGINAL_NAMES = { union_pay: "UP", vise: "VISA", jcb: "JCB", master: "MC" }
+    CREDIT_CARD_ORIGINAL_NAMES = { union_pay: "UP", visa: "VISA", jcb: "JCB", master: "MC" }
 
     def self.keys
       [:cardnumber, :cardtype, :charset, :cv2, :expirydate, :orderamount, :ordercurrency, :orderdescription, :orderid,
