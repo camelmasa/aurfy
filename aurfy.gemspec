@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split($/)
   s.require_paths = ['lib']
 
-  s.add_dependency "activesupport", "~> 4.2.0"
+  s.add_dependency "activesupport", "~> 4.2"
   s.add_dependency 'credit_card_reader', '~> 0.0.4'
   s.add_dependency 'faraday', '~> 0.9.0'
-  s.add_dependency "rack", "~> 1.6.0"
+  s.add_dependency "rack", "~> 1.6"
 end
