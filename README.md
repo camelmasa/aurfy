@@ -27,12 +27,15 @@ Usage
 ```rb
 require "aurfy"
 
-merchant_id       = "M000000000"
-trade_certificate = "D0123456789012345678901234567890"
+options = {
+  merchant_id: "M000000000",
+  trade_certificate: "D0123456789012345678901234567890",
+  test: false
+}
 
-client = Aurfy::Client.new(merchant_id, trade_certificate)
+client = Aurfy::Client.new(options)
 
-client.request(
+client.purchase(
   cardnumber:  "0123456789012345",
   expirydate:  "1701",
   cv2:         "123",
