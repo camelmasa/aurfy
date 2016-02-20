@@ -1,5 +1,8 @@
-require 'faraday'
+require 'active_support/core_ext/object'
+require 'active_support/core_ext/hash'
 require 'credit_card_reader'
+require 'faraday'
+require 'rack'
 
 require 'aurfy/client'
 require 'aurfy/configure'

@@ -18,16 +18,16 @@ module Aurfy
     end
 
     def params
-      sorted_variables.merge({ signature: signature })
-    end
-
-    def sorted_variables
-      variables = instance_variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }
-      Hash[variables.delete_if { |k, _| k == :trade_certificate }.sort]
+      sorted_variables.merge(signature: signature)
     end
 
     def signature_key
-      sorted_variables.delete_if { |k, _| k == :signmethod }.map {|p| "#{p.first}=#{p.last}" }.join("&") + "&#{@trade_certificate}"
+      sorted_variables.except(:signmethod).to_query + "&#{@trade_certificate}"
+    end
+
+    def sorted_variables
+      variables = (instance_variables - [:@trade_certificate]).sort
+      variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }.to_h
     end
 
     private
@@ -42,7 +42,8 @@ module Aurfy
     end
 
     def default_values
-      { charset:          "UTF-8",
+      {
+        charset:          "UTF-8",
         ordercurrency:    "USD",
         orderdescription: "",
         orderid:          DateTime.now.strftime("%Y%m%d%H%M%S%N"),
@@ -52,7 +53,8 @@ module Aurfy
         txnremark1:       "",
         txnremark2:       "",
         version:          "1.0",
-        website:          "" }
+        website:          ""
+      }
     end
 
     def signature

@@ -7,9 +7,7 @@ module Aurfy
     end
 
     def parse
-      params = body.split("&").map { |p| p.split("=") }
-      params = params.map { |p| p.length >= 2 ? p : p.push("") }
-      Hash[params].each_with_object({}) { |(k, v), a| a[k.to_s.to_sym] = v }
+      Rack::Utils.parse_nested_query(body).symbolize_keys
     end
   end
 end
