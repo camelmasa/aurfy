@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aurfy::Client do
-  let(:client) { described_class.new("merchant_id", "trade_certificate") }
+  let(:client) { described_class.new(merchantid: "merchant_id", trade_certificate: "trade_certificate") }
 
   describe "#initialize" do
     it "assigns parameters for payment" do
@@ -11,7 +11,7 @@ describe Aurfy::Client do
     end
 
     context "with test argumaent" do
-      let(:client) { described_class.new("merchant_id", "trade_certificate", true) }
+      let(:client) { described_class.new(merchantid: "merchant_id", trade_certificate: "trade_certificate", test: true) }
 
       it "assigns parameters for payment" do
         expect(client.merchantid).to eq "merchant_id"

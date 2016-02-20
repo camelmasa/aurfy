@@ -5,10 +5,10 @@ module Aurfy
   class Client
     attr_reader :api_url, :merchantid, :trade_certificate
 
-    def initialize(merchantid, trade_certificate, test = false)
-      @api_url = test ? TEST_API_URL : API_URL
-      @merchantid = merchantid
-      @trade_certificate = trade_certificate
+    def initialize(options = {})
+      @api_url = options[:test] ? TEST_API_URL : API_URL
+      @merchantid = options[:merchantid]
+      @trade_certificate = options[:trade_certificate]
     end
 
     def request(options = {})
