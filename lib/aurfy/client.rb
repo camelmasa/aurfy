@@ -11,11 +11,11 @@ module Aurfy
       @trade_certificate = options[:trade_certificate]
     end
 
-    def request(options = {})
-      @configure = Configure.new(options.merge(merchantid: merchantid, trade_certificate: trade_certificate))
+    def purchase(options = {})
+      configure = Configure.new(options.merge(merchantid: merchantid, trade_certificate: trade_certificate))
 
-      result = Faraday.post @api_url, @configure.params
-      Response.new(result)
+      response = Faraday.post api_url, configure.params
+      Response.new(response)
     end
   end
 end
