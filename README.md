@@ -28,7 +28,7 @@ Usage
 require "aurfy"
 
 options = {
-  merchant_id: "M000000000",
+  merchantid: "M000000000",
   trade_certificate: "D0123456789012345678901234567890",
   test: false
 }
