@@ -27,7 +27,7 @@ module Aurfy
 
     def sorted_variables
       variables = (instance_variables - [:@trade_certificate]).sort
-      variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }.to_h
+      Hash[variables.map { |v| [v.to_s.sub("@", "").to_sym, instance_variable_get(v)] }]
     end
 
     private
